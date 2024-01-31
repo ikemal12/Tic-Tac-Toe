@@ -32,28 +32,35 @@ cd tic-tac-toe
 
 ### 2. Create and activate a virtual environment (optional but recommended)
 
-`python -m venv venv`
+```
+python -m venv venv
+```
 
 #### To activate on Windows:
 
-`venv/Scripts/activate`
+```
+venv/Scripts/activate
+```
 
 #### To activate on Unix or MacOS:
 
-`source venv/bin/activate`
+```
+source venv/bin/activate
+```
 
 ### 3. Install the game engine library:
 
-`python -m pip install --editable library/`
+```
+python -m pip install --editable library/
+```
 
 ## How to Play
 
-To play the game, simply navigate to the frontends folder:
+To play the game, simply navigate to the frontends folder and run the console module:
 
-`cd frontends/`
+```
+cd frontends/
+python -m console -X [player_type_1] -O [player_type_2]
+```
 
-And run the following command:
-
-`python -m console -X [player_type_1] -O [player_type_2]`
-
-Choosing from the following players - `human`, `random` or `minimax` to assign to `player_type_1` and `player_type_2`.
+Replace `player_type_1` and `player_type_2` with one of the three player types - `human`, `random` or `minimax` - depending on how you want to play the game.
