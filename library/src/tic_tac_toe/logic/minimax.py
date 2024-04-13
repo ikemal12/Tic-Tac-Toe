@@ -8,11 +8,25 @@ def find_best_move(game_state: GameState) -> Move | None:
     return max(game_state.possible_moves, key=bound_minimax)
 
 def minimax( 
-        move: Move, maximizer: Mark, choose_highest_score: bool = False
+        move: Move, maximizer: Mark, alpha: int = float('-inf'), beta: int = float('inf'),
+        choose_highest_score: bool = False
 ) -> int:
     if move.after_state.game_over:
         return move.after_state.evaluate_score(maximizer)
-    return (max if choose_highest_score else min)(
-        minimax(next_move, maximizer, not choose_highest_score)
-        for next_move in move.after_state.possible_moves
-    )
+    
+    if choose_highest_score:
+        value = float('-inf')
+        for next_move in move.after_state.possible_moves:
+            value = max(value, minimax(next_move, maximizer, alpha, beta, not choose_highest_score))
+            alpha = max(alpha, value)
+            if alpha >= beta:
+                break
+        return value
+    else:
+        value = float('inf')
+        for next_move in move.after_state.possible_moves:
+            value = min(value, minimax(next_move, maximizer, alpha, beta, not choose_highest_score))
+            beta = min(beta, value)
+            if alpha >= beta:
+                break  
+        return value
